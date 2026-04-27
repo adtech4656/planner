@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Elite Events Abidjan – Agence de planification d'événements de luxe en Côte d'Ivoire. Mariages, soirées privées, séminaires. Décoration florale or & blanc, organisation sur mesure.">
+  <title>Elite Events Abidjan | Agence événementielle luxe – Côte d'Ivoire</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Lightbox CDN pour galerie avancée -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+      color: #151515;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* Palettes modernes */
+    :root {
+      --emerald: #0B4F42;
+      --emerald-light: #1f6e5d;
+      --gold: #D4AF37;
+      --gold-soft: #e9d198;
+      --white: #FFFFFF;
+      --gray-bg: #F7F7F9;
+      --shadow-soft: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+      --glass-bg: rgba(255, 255, 255, 0.75);
+      --transition-default: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Header glasmorphique */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.7);
+      z-index: 1000;
+      transition: var(--transition-default);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    header.scrolled {
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    .logo h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 600;
+      background: linear-gradient(125deg, var(--emerald) 20%, var(--gold) 80%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #1e2a2a;
+      transition: 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    /* Hero section interactive */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=2000&auto=format') center/cover no-repeat fixed;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(11, 79, 66, 0.2), rgba(0, 0, 0, 0.2));
+      z-index: -1;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 3rem 2.5rem;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      box-shadow: var(--shadow-soft);
+      transform: translateY(0);
+      transition: transform 0.5s;
+    }
+
+    .hero-content h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--emerald);
+    }
+
+    .hero-content h1 span {
+      color: var(--gold);
+      display: inline-block;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      margin: 1.2rem 0 2rem;
+      line-height: 1.5;
+      color: #2c2c2c;
+    }
+
+    .btn-reserver {
+      background: var(--emerald);
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 1rem 2.2rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: var(--transition-default);
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(11, 79, 66, 0.3);
+    }
+
+    .btn-reserver:hover {
+      background: var(--gold);
+      color: var(--emerald);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 25px -8px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 0;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--emerald);
+      position: relative;
+    }
+
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 90px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--emerald));
+      margin: 1rem auto 0;
+      border-radius: 4px;
+    }
+
+    /* Services - cartes modernes */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: white;
+      padding: 2rem 1.5rem;
+      border-radius: 32px;
+      text-align: center;
+      transition: var(--transition-default);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.02);
+    }
+
+    .service-card:hover {
+      transform: translateY(-12px);
+      border-color: var(--gold);
+      box-shadow: 0 28px 35px -15px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-card i {
+      font-size: 2.8rem;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    /* Galerie avancée (lightbox ready) */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .gallery-item {
+      border-radius: 28px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .overlay-gallery {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent);
+      padding: 1rem;
+      color: white;
+      font-weight: 500;
+      transform: translateY(100%);
+      transition: 0.3s;
+    }
+
+    .gallery-item:hover .overlay-gallery {
+      transform: translateY(0);
+    }
+
+    /* Formulaire glassmorphique */
+    .contact-wrapper {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 48px;
+      padding: 2.5rem;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group.full-width {
+      grid-column: span 2;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      background: white;
+      border: 1px solid #e2e2e2;
+      border-radius: 60px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      transition: 0.2s;
+    }
+
+    textarea {
+      border-radius: 30px;
+      resize: vertical;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    }
+
+    .btn-submit {
+      background: var(--emerald);
+      color: white;
+      font-weight: 600;
+      padding: 1rem;
+      border-radius: 60px;
+      width: 100%;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: var(--gold);
+      color: var(--emerald);
+    }
+
+    .contact-details {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .detail-card {
+      background: white;
+      border-radius: 28px;
+      padding: 1rem 1.8rem;
+      text-align: center;
+      flex: 1;
+      min-width: 150px;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--emerald);
+      color: #f9f2e0;
+      padding: 2.5rem 0;
+    }
+
+    .footer-modern {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .social-icons a {
+      color: var(--gold-soft);
+      margin: 0 12px;
+      font-size: 1.3rem;
+      transition: 0.2s;
+    }
+
+    .social-icons a:hover {
+      color: white;
+    }
+
+    /* Animations scroll */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-content h1 { font-size: 2.8rem; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full-width { grid-column: span 1; }
+      .container { padding: 0 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="header">
+  <div class="container">
+    <nav>
+      <div class="logo"><h1>Elite Events Abidjan</h1></div>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Accueil</a></li>
+        <li><a href="#services">Nos Services</a></li>
+        <li><a href="#gallery">Galerie</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content fade-up">
+        <h1>L’art de la <span>réception</span><br>en Côte d’Ivoire</h1>
+        <p>Mariages, galas et événements d'entreprise — une élégance signée Elite Events, entre émeraude et or. Une équipe dédiée à Abidjan pour des moments inoubliables.</p>
+        <a href="#contact" class="btn-reserver"><i class="fas fa-calendar-week"></i> Réserver Maintenant</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services modernes -->
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title fade-up">Nos Prestations d'Exception</h2>
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <i class="fas fa-ring"></i>
+          <h3>Mariages & Décoration</h3>
+          <p>Scénographie florale or & blanc, arches somptueuses, coordination parfaite.</p>
+        </div>
+        <div class="service-card fade-up">
+          <i class="fas fa-building"></i>
+          <h3>Corporate & Galas</h3>
+          <p>Conférences, lancements de produits, soirées caritatives avec une signature luxe.</p>
+        </div>
+        <div class="service-card fade-up">
+          <i class="fas fa-champagne-glasses"></i>
+          <h3>Soirées privées</h3>
+          <p>Anniversaires, dîners intimes, soirées à thème : raffinement et créativité.</p>
+        </div>
+        <div class="service-card fade-up">
+          <i class="fas fa-calendar-alt"></i>
+          <h3>Wedding Planning Total</h3>
+          <p>De la recherche du lieu à la décoration florale, jusqu'au jour J.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galerie avancée (lightbox) -->
+  <section id="gallery">
+    <div class="container">
+      <h2 class="section-title fade-up">Galerie d'Inspiration</h2>
+      <div class="gallery-grid" id="lightgallery">
+        <div class="gallery-item" data-src="https://images.unsplash.com/photo-1583939003570-5b5c79c6f6b2?w=1200&auto=format">
+          <img src="https://images.unsplash.com/photo-1583939003570-5b5c79c6f6b2?w=600&auto=format" alt="Bouquet doré">
+          <div class="overlay-gallery">Bouquet Royal Or</div>
+        </div>
+        <div class="gallery-item" data-src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&auto=format">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&auto=format" alt="Table de mariage luxe">
+          <div class="overlay-gallery">Table Émeraude & Ivoire</div>
+        </div>
+        <div class="gallery-item" data-src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1200&auto=format">
+          <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&auto=format" alt="Arche florale">
+          <div class="overlay-gallery">Arche Fleurie Dorée</div>
+        </div>
+        <div class="gallery-item" data-src="https://images.unsplash.com/photo-1532712938312-94e33ef25e2e?w=1200&auto=format">
+          <img src="https://images.unsplash.com/photo-1532712938312-94e33ef25e2e?w=600&auto=format" alt="Centre table">
+          <div class="overlay-gallery">Composition Haute</div>
+        </div>
+        <div class="gallery-item" data-src="https://images.unsplash.com/photo-1605270941155-3d24ebf4c95c?w=1200&auto=format">
+          <img src="https://images.unsplash.com/photo-1605270941155-3d24ebf4c95c?w=600&auto=format" alt="Mariage plage">
+          <div class="overlay-gallery">Cérémonie Bord de Mer</div>
+        </div>
+        <div class="gallery-item" data-src="https://images.unsplash.com/photo-1519162584292-56dfc9eb5db4?w=1200&auto=format">
+          <img src="https://images.unsplash.com/photo-1519162584292-56dfc9eb5db4?w=600&auto=format" alt="Cocktail chic">
+          <div class="overlay-gallery">Soirée Luxury Style</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Réservation avec formulaire moderne -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title fade-up">Réservez votre événement</h2>
+      <div class="contact-wrapper fade-up">
+        <form id="advancedForm" action="https://formspree.io/f/mvgpzvqk" method="POST">
+          <div class="form-grid">
+            <div class="form-group"><input type="text" name="nom" placeholder="Nom & prénom" required></div>
+            <div class="form-group"><input type="email" name="email" placeholder="Email" required></div>
+            <div class="form-group"><input type="tel" name="telephone" placeholder="Téléphone"></div>
+            <div class="form-group">
+              <select name="service">
+                <option>Type d'événement</option>
+                <option>Mariage / Cérémonie</option>
+                <option>Gala d'entreprise</option>
+                <option>Soirée privée / Anniversaire</option>
+                <option>Décoration uniquement</option>
+              </select>
+            </div>
+            <div class="form-group full-width"><input type="text" name="date" placeholder="Date souhaitée (ex: 15 décembre 2025)"></div>
+            <div class="form-group full-width"><textarea rows="3" name="message" placeholder="Votre projet, nombre d'invités, idées..." required></textarea></div>
+          </div>
+          <button type="submit" class="btn-submit"><i class="fas fa-calendar-check"></i> Réserver Maintenant</button>
+          <p style="font-size:0.75rem; text-align:center; margin-top:1rem;">Réponse sous 24h – Équipe Elite Events Abidjan</p>
+        </form>
+        <div class="contact-details">
+          <div class="detail-card"><i class="fas fa-map-pin"></i> <h4>Cocody, Abidjan</h4><small>Deux Plateaux</small></div>
+          <div class="detail-card"><i class="fab fa-whatsapp"></i> <h4>+225 07 69 00 12 34</h4><small>Appel / WhatsApp</small></div>
+          <div class="detail-card"><i class="far fa-envelope"></i> <h4>contact@eliteevents.ci</h4><small>Devis gratuit</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-modern">
+      <div>© 2025 Elite Events Abidjan — Agence événementielle de prestige</div>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scripts LightGallery + Intersection Observer -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/lightgallery.min.js"></script>
+<script>
+  // LightGallery moderne
+  if (document.getElementById('lightgallery')) {
+    lightGallery(document.getElementById('lightgallery'), {
+      selector: '.gallery-item',
+      speed: 500,
+      download: false,
+      counter: true
+    });
+  }
+
+  // Scroll animations (fade-up)
+  const faders = document.querySelectorAll('.fade-up');
+  const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -20px 0px" };
+  const appearOnScroll = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        appearOnScroll.unobserve(entry.target);
+      }
+    });
+  }, appearOptions);
+  faders.forEach(fader => appearOnScroll.observe(fader));
+
+  // Header shrink on scroll
+  const headerEl = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      headerEl.classList.add('scrolled');
+    } else {
+      headerEl.classList.remove('scrolled');
+    }
+  });
+
+  // Navigation Active highlight
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 120;
+      if (scrollY >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  });
+
+  // Form submission simulation + alerte
+  const contactForm = document.getElementById('advancedForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(contactForm);
+      try {
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          alert('✨ Votre demande a bien été envoyée ! Notre équipe vous recontactera sous 24h.');
+          contactForm.reset();
+        } else {
+          alert('❌ Une erreur est survenue, merci de nous appeler directement.');
+        }
+      } catch {
+        alert('Erreur réseau, veuillez réessayer ou nous contacter via WhatsApp.');
+      }
+    });
+  }
+</script>
+</body>
+</html>
